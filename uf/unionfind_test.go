@@ -6,6 +6,7 @@ import (
 
 	"github.com/tbruyelle/alg/uf/qf"
 	"github.com/tbruyelle/alg/uf/qu"
+	"github.com/tbruyelle/alg/uf/wqu"
 )
 
 func TestQuickFind(t *testing.T) {
@@ -33,4 +34,19 @@ func TestQuickUnion(t *testing.T) {
 	qu.Union(8, 4)
 
 	fmt.Println("QuickUnion", qu)
+}
+
+func TestWeightedQuickUnion(t *testing.T) {
+	qu := weightedquickunion.New(10)
+	qu.Union(8, 5)
+	qu.Union(9, 0)
+	qu.Union(0, 7)
+	qu.Union(6, 1)
+	qu.Union(1, 8)
+	qu.Union(9, 3)
+	qu.Union(7, 2)
+	qu.Union(5, 9)
+	qu.Union(8, 4)
+
+	fmt.Printf("WeightedQuickUnion %+v", qu)
 }
