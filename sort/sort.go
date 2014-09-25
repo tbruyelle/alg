@@ -1,8 +1,8 @@
-package hsort
+package sort
 
 import "fmt"
 
-func Sort(h int, a []int) {
+func HSort(h int, a []int) {
 	for i := h; i < len(a); i++ {
 		for j := i; j >= h; j-- {
 			if a[j-h] > a[j] {
