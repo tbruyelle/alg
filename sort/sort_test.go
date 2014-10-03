@@ -7,7 +7,7 @@ import (
 
 func TestMergeSort(t *testing.T) {
 	fmt.Println("MergeSort")
-	a := []int{29, 74, 47, 13, 61, 21, 56, 80, 42, 88, 67, 84}
+	a := []int{98, 60, 20, 73, 58, 13, 64, 43, 46, 51, 18, 19}
 	fmt.Println(a)
 
 	MergeSort(a)
