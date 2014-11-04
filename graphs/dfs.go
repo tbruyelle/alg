@@ -6,37 +6,38 @@ import (
 
 // Dfs implements the Deep-first search algorythm
 type Dfs struct {
-	g      *datastruct.Graph
 	s      int
 	marked []bool
 	edgeTo []int
 }
 
-// New performs a dfs algorythm on g, starting from vertex s.
+// NewDfs performs a dfs algorythm on g, starting from vertex s.
 func NewDfs(g *datastruct.Graph, s int) *Dfs {
-	d := &Dfs{g: g, s: s}
+	d := &Dfs{s: s}
 	d.marked = make([]bool, g.V)
 	d.edgeTo = make([]int, g.V)
 
-	d.dfs(s)
+	d.dfs(g, s)
 
 	return d
 }
 
-func (d *Dfs) dfs(v int) {
+func (d *Dfs) dfs(g *datastruct.Graph, v int) {
 	d.marked[v] = true
-	for _, w := range d.g.Adj(v) {
+	for _, w := range g.Adj(v) {
 		if !d.marked[w] {
-			d.dfs(w)
+			d.dfs(g, w)
 			d.edgeTo[w] = v
 		}
 	}
 }
 
+// HasPathTo returns true if v and s are connected.
 func (d *Dfs) HasPathTo(v int) bool {
 	return d.marked[v]
 }
 
+// PathTo returns the path from v to s.
 func (d *Dfs) PathTo(v int) []int {
 	path := make([]int, 0)
 	if !d.HasPathTo(v) {
