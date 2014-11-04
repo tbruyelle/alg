@@ -1,19 +1,19 @@
-package dfs
+package graphs
 
 import (
-	"github.com/tbruyelle/alg/graphs/graph"
+	"github.com/tbruyelle/alg/datastruct"
 	"testing"
 )
 
 func TestHasPathTo(t *testing.T) {
-	g := graph.New(10)
+	g := datastruct.NewGraph(10)
 	g.Edge(0, 1)
 	g.Edge(1, 2)
 	g.Edge(2, 5)
 	g.Edge(3, 8)
 	g.Edge(3, 7)
 
-	d := New(g, 0)
+	d := NewDfs(g, 0)
 
 	if !d.HasPathTo(1) {
 		t.Errorf("0 should have path to 1")
@@ -36,14 +36,14 @@ func TestHasPathTo(t *testing.T) {
 }
 
 func TestPathTo(t *testing.T) {
-	g := graph.New(10)
+	g := datastruct.NewGraph(10)
 	g.Edge(0, 1)
 	g.Edge(1, 2)
 	g.Edge(2, 5)
 	g.Edge(3, 8)
 	g.Edge(3, 7)
 
-	d := New(g, 0)
+	d := NewDfs(g, 0)
 	path := d.PathTo(5)
 
 	if l := len(path); l != 4 {

@@ -1,13 +1,13 @@
-package graph
+package datastruct
 
 import (
 	"testing"
 )
 
-func TestNew(t *testing.T) {
+func TestNewGraph(t *testing.T) {
 	V := 10
 
-	g := New(V)
+	g := NewGraph(V)
 
 	if g.V != V {
 		t.Errorf("Graph V=%d, want %d", g.V, V)
@@ -19,7 +19,7 @@ func TestNew(t *testing.T) {
 }
 
 func TestEdge(t *testing.T) {
-	g := New(10)
+	g := NewGraph(10)
 
 	g.Edge(0, 1)
 	g.Edge(0, 2)

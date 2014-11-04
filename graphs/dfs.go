@@ -1,19 +1,19 @@
-// Deep-first search algorythm
-package dfs
+package graphs
 
 import (
-	"github.com/tbruyelle/alg/graphs/graph"
+	"github.com/tbruyelle/alg/datastruct"
 )
 
+// Dfs implements the Deep-first search algorythm
 type Dfs struct {
-	g      *graph.Graph
+	g      *datastruct.Graph
 	s      int
 	marked []bool
 	edgeTo []int
 }
 
 // New performs a dfs algorythm on g, starting from vertex s.
-func New(g *graph.Graph, s int) *Dfs {
+func NewDfs(g *datastruct.Graph, s int) *Dfs {
 	d := &Dfs{g: g, s: s}
 	d.marked = make([]bool, g.V)
 	d.edgeTo = make([]int, g.V)
