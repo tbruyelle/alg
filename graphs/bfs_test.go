@@ -56,3 +56,25 @@ func TestBfsPathTo(t *testing.T) {
 		}
 	}
 }
+
+func TestBfsDistanceTo(t *testing.T) {
+	g := datastruct.NewGraph(10)
+	g.Edge(0, 1)
+	g.Edge(1, 2)
+	g.Edge(0, 2)
+	g.Edge(2, 5)
+	g.Edge(3, 8)
+	g.Edge(3, 7)
+
+	b := NewBfs(g, 0)
+
+	if d := b.DistanceTo(1); d != 1 {
+		t.Errorf("DistanceTo(1)=%d, want 1", d)
+	}
+	if d := b.DistanceTo(2); d != 1 {
+		t.Errorf("DistanceTo(2)=%d, want 1", d)
+	}
+	if d := b.DistanceTo(5); d != 2 {
+		t.Errorf("DistanceTo(5)=%d, want 2", d)
+	}
+}

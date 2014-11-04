@@ -1,7 +1,6 @@
 package graphs
 
 import (
-	"fmt"
 	"github.com/tbruyelle/alg/datastruct"
 )
 
@@ -10,6 +9,7 @@ type Bfs struct {
 	s      int
 	marked []bool
 	edgeTo []int
+	distTo []int
 }
 
 // NewBfs performs a bfs algorythm on g, starting from vertex s.
@@ -17,9 +17,12 @@ func NewBfs(g *datastruct.Graph, s int) *Bfs {
 	b := &Bfs{s: s}
 	b.marked = make([]bool, g.V)
 	b.edgeTo = make([]int, g.V)
+	b.distTo = make([]int, g.V)
 
 	q := datastruct.NewQueue()
 	q.Push(s)
+	b.marked[s] = true
+	dist := 1
 	for {
 		x := q.Pull()
 		if x == nil {
@@ -30,12 +33,19 @@ func NewBfs(g *datastruct.Graph, s int) *Bfs {
 			if !b.marked[w] {
 				b.marked[w] = true
 				b.edgeTo[w] = v
+				b.distTo[w] = dist
 				q.Push(w)
 			}
 		}
+		dist++
 	}
 
 	return b
+}
+
+// DistanceTo returns the minimum distance between v and s.
+func (b *Bfs) DistanceTo(v int) int {
+	return b.distTo[v]
 }
 
 // HasPathTo returns true if v and s are connected.
