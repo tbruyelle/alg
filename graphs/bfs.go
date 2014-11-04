@@ -29,15 +29,19 @@ func NewBfs(g *datastruct.Graph, s int) *Bfs {
 			break
 		}
 		v := x.(int)
+		process := false
 		for _, w := range g.Adj(v) {
 			if !b.marked[w] {
+				process = true
 				b.marked[w] = true
 				b.edgeTo[w] = v
 				b.distTo[w] = dist
 				q.Push(w)
 			}
 		}
-		dist++
+		if process {
+			dist++
+		}
 	}
 
 	return b
