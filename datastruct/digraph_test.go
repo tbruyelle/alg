@@ -4,13 +4,13 @@ import (
 	"testing"
 )
 
-func TestNewGraph(t *testing.T) {
+func TestNewDigraph(t *testing.T) {
 	V := 10
 
-	g := NewGraph(V)
+	g := NewDigraph(V)
 
 	if g.V != V {
-		t.Errorf("Graph V=%d, want %d", g.V, V)
+		t.Errorf("Digraph V=%d, want %d", g.V, V)
 	}
 	adj := g.Adj(0)
 	if l := len(adj); l > 0 {
@@ -18,8 +18,8 @@ func TestNewGraph(t *testing.T) {
 	}
 }
 
-func TestGraphEdge(t *testing.T) {
-	g := NewGraph(10)
+func TestDigraphEdge(t *testing.T) {
+	g := NewDigraph(10)
 
 	g.Edge(0, 1)
 	g.Edge(0, 2)
