@@ -2,27 +2,35 @@ package datastruct
 
 // Digraph represents the graph data structure.
 type Digraph struct {
-	// V represents the number of vertices.
-	V int
-	// E represents the number of edges.
-	E   int
+	v   int
+	e   int
 	adj [][]int
 }
 
 // NewDigraph returns an adjacency-list graph representation.
-func NewDigraph(V int) *Digraph {
-	g := &Digraph{V: V}
-	g.adj = make([][]int, V)
+func NewDigraph(v int) *Digraph {
+	g := &Digraph{v: v}
+	g.adj = make([][]int, v)
 	return g
 }
 
 // Edge adds a new edge to the graph.
 func (g *Digraph) Edge(v, w int) {
 	g.adj[v] = append(g.adj[v], w)
-	g.E++
+	g.e++
 }
 
 // Adj returns the adjacent vertices of the vertex v.
 func (g *Digraph) Adj(v int) []int {
 	return g.adj[v]
+}
+
+// V returns the number of vertices.
+func (g *Digraph) V() int {
+	return g.v
+}
+
+// E returns the number of edges.
+func (g *Digraph) E() int {
+	return g.e
 }

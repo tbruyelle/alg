@@ -13,11 +13,11 @@ type Bfs struct {
 }
 
 // NewBfs performs a bfs algorythm on g, starting from vertex s.
-func NewBfs(g *datastruct.Graph, s int) *Bfs {
+func NewBfs(g Interface, s int) *Bfs {
 	b := &Bfs{s: s}
-	b.marked = make([]bool, g.V)
-	b.edgeTo = make([]int, g.V)
-	b.distTo = make([]int, g.V)
+	b.marked = make([]bool, g.V())
+	b.edgeTo = make([]int, g.V())
+	b.distTo = make([]int, g.V())
 
 	q := datastruct.NewQueue()
 	q.Push(s)

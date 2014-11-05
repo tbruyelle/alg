@@ -14,10 +14,10 @@ type CC struct {
 // NewCC performs a cc algorythm on g.
 func NewCC(g *datastruct.Graph) *CC {
 	c := &CC{}
-	c.marked = make([]bool, g.V)
-	c.Id = make([]int, g.V)
+	c.marked = make([]bool, g.V())
+	c.Id = make([]int, g.V())
 
-	for v := 0; v < g.V; v++ {
+	for v := 0; v < g.V(); v++ {
 		if !c.marked[v] {
 			c.bfs(g, v)
 			c.Count++

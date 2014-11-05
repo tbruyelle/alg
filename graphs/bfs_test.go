@@ -76,3 +76,33 @@ func TestBfsDistanceTo(t *testing.T) {
 		}
 	}
 }
+
+func TestBfsDigraphHasPathTo(t *testing.T) {
+	g := datastruct.NewDigraph(10)
+	g.Edge(0, 1)
+	g.Edge(1, 2)
+	g.Edge(2, 5)
+	g.Edge(3, 8)
+	g.Edge(3, 7)
+
+	b := NewBfs(g, 0)
+
+	if !b.HasPathTo(1) {
+		t.Errorf("0 should have path to 1")
+	}
+	if !b.HasPathTo(2) {
+		t.Errorf("0 should have path to 2")
+	}
+	if !b.HasPathTo(5) {
+		t.Errorf("0 should have path to 5")
+	}
+	if b.HasPathTo(3) {
+		t.Errorf("0 should not have path to 3")
+	}
+	if b.HasPathTo(8) {
+		t.Errorf("0 should not have path to 8")
+	}
+	if b.HasPathTo(7) {
+		t.Errorf("0 should not have path to 7")
+	}
+}

@@ -1,9 +1,5 @@
 package graphs
 
-import (
-	"github.com/tbruyelle/alg/datastruct"
-)
-
 // Dfs implements the Deep-first search algorythm
 type Dfs struct {
 	s      int
@@ -12,17 +8,17 @@ type Dfs struct {
 }
 
 // NewDfs performs a dfs algorythm on g, starting from vertex s.
-func NewDfs(g *datastruct.Graph, s int) *Dfs {
+func NewDfs(g Interface, s int) *Dfs {
 	d := &Dfs{s: s}
-	d.marked = make([]bool, g.V)
-	d.edgeTo = make([]int, g.V)
+	d.marked = make([]bool, g.V())
+	d.edgeTo = make([]int, g.V())
 
 	d.dfs(g, s)
 
 	return d
 }
 
-func (d *Dfs) dfs(g *datastruct.Graph, v int) {
+func (d *Dfs) dfs(g Interface, v int) {
 	d.marked[v] = true
 	for _, w := range g.Adj(v) {
 		if !d.marked[w] {

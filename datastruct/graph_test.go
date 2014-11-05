@@ -9,8 +9,8 @@ func TestNewGraph(t *testing.T) {
 
 	g := NewGraph(V)
 
-	if g.V != V {
-		t.Errorf("Graph V=%d, want %d", g.V, V)
+	if g.V() != V {
+		t.Errorf("Graph V=%d, want %d", g.V(), V)
 	}
 	adj := g.Adj(0)
 	if l := len(adj); l > 0 {
