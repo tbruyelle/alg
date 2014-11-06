@@ -23,7 +23,7 @@ func TestDfo(t *testing.T) {
 
 	d := NewDfo(g)
 
-	want := []int{4, 1, 2, 5, 0, 6, 3}
+	want := []int{3, 6, 0, 5, 2, 1, 4}
 	if !reflect.DeepEqual(d.ReversePost, want) {
 		t.Errorf("ReversePost %v, want %v", d.ReversePost, want)
 	}

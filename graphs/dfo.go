@@ -21,6 +21,10 @@ func NewDfo(g *datastruct.Digraph) *Dfo {
 			d.dfs(g, v)
 		}
 	}
+	// Reverse the ReversePost array
+	for i, j := 0, len(d.ReversePost)-1; i < j; i, j = i+1, j-1 {
+		d.ReversePost[i], d.ReversePost[j] = d.ReversePost[j], d.ReversePost[i]
+	}
 
 	return d
 }
