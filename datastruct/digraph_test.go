@@ -1,6 +1,7 @@
 package datastruct
 
 import (
+	"reflect"
 	"testing"
 )
 
@@ -25,17 +26,26 @@ func TestDigraphEdge(t *testing.T) {
 	g.Edge(0, 2)
 	g.Edge(0, 5)
 
-	adj := g.Adj(0)
-	if l := len(adj); l != 3 {
-		t.Fatalf("Ajd(0) len=%d, want 3", l)
+	want := []int{1, 2, 5}
+	if !reflect.DeepEqual(g.Adj(0), want) {
+		t.Errorf("Adj(0)=%v, want %v", g.Adj(0), want)
 	}
-	if adj[0] != 1 {
-		t.Errorf("adj[0]=%d, want 1", adj)
-	}
-	if adj[1] != 2 {
-		t.Errorf("adj[1]=%d, want 2", adj)
-	}
-	if adj[2] != 5 {
-		t.Errorf("adj[2]=%d, want 5", adj)
+}
+
+func TestDigraphReverse(t *testing.T) {
+	g := NewDigraph(4)
+	g.Edge(0, 1)
+	g.Edge(0, 2)
+	g.Edge(0, 3)
+	g.Edge(2, 1)
+	g.Edge(1, 0)
+
+	r := g.Reverse()
+
+	want := [][]int{{1}, {0, 2}, {0}, {0}}
+	for v := 0; v < r.V(); v++ {
+		if !reflect.DeepEqual(r.Adj(v), want[v]) {
+			t.Errorf("Reverse Adj(%d)=%v, want %v", v, r.Adj(v), want[v])
+		}
 	}
 }

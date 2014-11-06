@@ -28,3 +28,16 @@ func TestDfo(t *testing.T) {
 		t.Errorf("ReversePost %v, want %v", d.ReversePost, want)
 	}
 }
+
+func TestDfoNotDAG(t *testing.T) {
+	g := datastruct.NewDigraph(3)
+	g.Edge(0, 1)
+	g.Edge(1, 2)
+	g.Edge(2, 0)
+
+	d := NewDfo(g)
+
+	// Not implemented for now, should return no reversePost
+	// because the graph isn't a DAG.
+	_ = d
+}

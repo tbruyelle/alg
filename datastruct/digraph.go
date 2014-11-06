@@ -34,3 +34,15 @@ func (g *Digraph) V() int {
 func (g *Digraph) E() int {
 	return g.e
 }
+
+// Reverse returns the reverse digraph.
+func (g *Digraph) Reverse() *Digraph {
+	r := NewDigraph(g.V())
+	for v := 0; v < g.V(); v++ {
+		adj := g.Adj(v)
+		for _, w := range adj {
+			r.Edge(w, v)
+		}
+	}
+	return r
+}
