@@ -10,7 +10,7 @@ type WeightedGraph struct {
 
 type Edge struct {
 	v, w   int
-	weight int
+	Weight int
 }
 
 // NewWeightedGraph returns an adjacency-list graph representation.
@@ -21,11 +21,11 @@ func NewWeightedGraph(v int) *WeightedGraph {
 }
 
 // Edge adds a new edge to the graph.
-func (g *WeightedGraph) Edge(v, w, weight int) {
-	g.adj[v] = append(g.adj[v], Edge{v, w, weight})
-	g.adj[w] = append(g.adj[w], Edge{w, v, weight})
+func (g *WeightedGraph) Edge(v, w, Weight int) {
+	g.adj[v] = append(g.adj[v], Edge{v, w, Weight})
+	g.adj[w] = append(g.adj[w], Edge{w, v, Weight})
 	g.e++
-	g.edges = append(g.edges, Edge{v, w, weight})
+	g.edges = append(g.edges, Edge{v, w, Weight})
 }
 
 // Edges returns all the added edges.
@@ -61,5 +61,5 @@ func (e Edge) Other(v int) int {
 
 // Priority implements the Item interface from PriorityQueue.
 func (e Edge) Priority() int {
-	return e.weight
+	return e.Weight
 }

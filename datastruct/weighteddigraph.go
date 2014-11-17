@@ -10,7 +10,7 @@ type WeightedDigraph struct {
 
 type DirectedEdge struct {
 	v, w   int
-	weight int
+	Weight int
 }
 
 // NewWeightedDigraph returns an adjacency-list graph representation.
@@ -21,10 +21,10 @@ func NewWeightedDigraph(v int) *WeightedDigraph {
 }
 
 // DirectedEdge adds a new edge to the graph.
-func (g *WeightedDigraph) Edge(v, w, weight int) {
-	g.adj[v] = append(g.adj[v], DirectedEdge{v, w, weight})
+func (g *WeightedDigraph) Edge(v, w, Weight int) {
+	g.adj[v] = append(g.adj[v], DirectedEdge{v, w, Weight})
 	g.e++
-	g.edges = append(g.edges, DirectedEdge{v, w, weight})
+	g.edges = append(g.edges, DirectedEdge{v, w, Weight})
 }
 
 // DirectedEdges returns all the added edges.
@@ -57,5 +57,5 @@ func (e DirectedEdge) To() int {
 
 // Priority implements the Item interface from PriorityQueue.
 func (e DirectedEdge) Priority() int {
-	return e.weight
+	return e.Weight
 }
