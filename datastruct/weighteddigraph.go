@@ -1,5 +1,9 @@
 package datastruct
 
+import (
+	"fmt"
+)
+
 // WeightedDigraph represents the graph data structure.
 type WeightedDigraph struct {
 	v     int
@@ -58,4 +62,8 @@ func (e DirectedEdge) To() int {
 // Priority implements the Item interface from PriorityQueue.
 func (e DirectedEdge) Priority() int {
 	return e.Weight
+}
+
+func (e DirectedEdge) String() string {
+	return fmt.Sprintf("%d->%d", e.From(), e.To())
 }
