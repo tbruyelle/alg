@@ -5,7 +5,7 @@ import (
 	"github.com/tbruyelle/alg/datastruct"
 )
 
-// MST implement the Kruskal's Minimum Spanning Tree algorithm.
+// MST implements the Kruskal's Minimum Spanning Tree algorithm.
 type MST struct {
 	Edges []datastruct.Edge
 }

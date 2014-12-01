@@ -22,3 +22,7 @@ func (q *Queue) Pull() interface{} {
 	q.a = q.a[1:]
 	return x
 }
+
+func (q *Queue) Empty() bool {
+	return len(q.a) == 0
+}
