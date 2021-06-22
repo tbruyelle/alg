@@ -1,7 +1,10 @@
 package datastruct
 
 import (
+	"os"
 	"testing"
+
+	"github.com/goccy/go-graphviz"
 )
 
 func TestNewGraph(t *testing.T) {
@@ -38,4 +41,43 @@ func TestGraphEdge(t *testing.T) {
 	if adj[2] != 5 {
 		t.Errorf("adj[2]=%d, want 5", adj)
 	}
+}
+
+func TestDupV(t *testing.T) {
+	g := NewDigraph(4)
+	g.Edge(0, 1)
+	g.Edge(1, 2)
+	g.Edge(2, 3)
+
+	dupVert(g, 0)
+
+	f, err := os.Create("/tmp/graph.png")
+	if err != nil {
+		t.Fatal(err)
+	}
+	RenderDiGraph(g, graphviz.PNG, f)
+}
+
+var nbDup = []int{0, 1, 1, 0}
+
+func dupVert(g *Digraph, v int) {
+	for i := 0; i < nbDup[v]; i++ {
+		g.v++
+		g.adj = append(g.adj, []int{})
+		newv := g.v - 1
+		// add edge from parents of v to newv
+		for _, w := range g.Reverse().adj[v] {
+			// add condition here to prevent add edges to wrong parents
+			g.adj[w] = append(g.adj[w], newv)
+		}
+		// add edge from child of v to newv
+		for _, w := range g.adj[v] {
+			g.adj[newv] = append(g.adj[newv], w)
+		}
+	}
+
+	for _, w := range g.adj[v] {
+		dupVert(g, w)
+	}
+
 }
